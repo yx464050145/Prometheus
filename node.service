@@ -1,0 +1,11 @@
+[Unit]
+After=docker.service
+
+[Service]
+ExecStart=/var/gnway/node_exporter/node_exporter
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target
+

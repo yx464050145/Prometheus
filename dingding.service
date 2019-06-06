@@ -1,0 +1,10 @@
+[Unit]
+After=docker.service
+
+[Service]
+ExecStart=/usr/lib/golang/src/github.com/timonwong/prometheus-webhook-dingtalk/prometheus-webhook-dingtalk --ding.profile=dingding=https://oapi.dingtalk.com/robot/send?access_token=bcb009192ebb16da25e43044e1a5656d806295a7508989e49f1552066706d356
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target

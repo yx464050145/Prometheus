@@ -1,0 +1,210 @@
+[
+  {
+    "targets": [ "172.18.152.29:9100"],
+    "labels": {
+      "grafana": "mongodb-replica-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.30:9100"],
+    "labels": {
+      "grafana": "mongodb-replica-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.31:9100"],
+    "labels": {
+      "grafana": "mongdb-replica-3",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.32:9100"],
+    "labels": {
+      "grafana": "redis-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.33:9100"],
+    "labels": {
+      "grafana": "redis-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.34:9100"],
+    "labels": {
+      "grafana": "redis-3",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.35:9100"],
+    "labels": {
+      "grafana": "redis-sentinel-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.36:9100"],
+    "labels": {
+      "grafana": "redis-sentinel-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.37:9100"],
+    "labels": {
+      "grafana": "redis-sentinel-3",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.38:9100"],
+    "labels": {
+      "grafana": "memcached-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.39:9100"],
+    "labels": {
+      "grafana": "memcached-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.40:9100"],
+    "labels": {
+      "grafana": "haproxy-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.41:9100"],
+    "labels": {
+      "grafana": "haproxy-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.42:9100"],
+    "labels": {
+      "grafana": "freeswitch-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.43:9100"],
+    "labels": {
+      "grafana": "freeswitch-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.44:9100"],
+    "labels": {
+      "grafana": "glusterFS-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.45:9100"],
+    "labels": {
+      "grafana": "glusterFS-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.46:9100"],
+    "labels": {
+      "grafana": "mysql-bigdata",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.47:9100"],
+    "labels": {
+      "grafana": "mysql-pxc-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.48:9100"],
+    "labels": {
+      "grafana": "mysql-pxc-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.49:9100"],
+    "labels": {
+      "grafana": "mysql-pxc-3",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.50:9100"],
+    "labels": {
+      "grafana": "mysql-slave-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.51:9100"],
+    "labels": {
+      "grafana": "mysql-slave-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.52:9100"],
+    "labels": {
+      "grafana": "es-1",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.53:9100"],
+    "labels": {
+      "grafana": "es-2",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  },
+  {
+    "targets": [ "172.18.152.54:9100"],
+    "labels": {
+      "grafana": "es-3",
+      "gnway": "exporter",
+      "job": "node"
+    }
+  } 
+]
