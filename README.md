@@ -9,3 +9,5 @@ Exporter：采集数据并且向Prometheus server提供数据的一个程序
 Prometheus server：核心组件，负责对数据的收集查询以及存储，本身是一个时序数据库
 Alertmanager：报警
 Grafana：UI展示
+
+网络不通，例如物理机监控Kubernets内的服务，需要采用联邦集群，一个Prometheus监控另一个Prometheus。其中一个Prometheus只负责采集数据提供给主Prometheus，主Prometheus负责存储数据以及报警
