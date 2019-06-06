@@ -1,0 +1,30 @@
+[
+  {
+    "targets": [ "172.18.152.52:9108"],
+    "labels": {
+      "instance": "es-1",
+      "grafana": "es-1",
+      "gnway": "base",
+      "job": "es"
+    }
+  },
+  {
+    "targets": [ "172.18.152.53:9108"],
+    "labels": {
+      "instance": "es-2",
+      "grafana": "es-2",
+      "gnway": "base",
+      "job": "es"
+    }
+  },
+  {
+    "targets": [ "172.18.152.54:9108"],
+    "labels": {
+      "instance": "es-3",
+      "grafana": "es-3",
+      "gnway": "base",
+      "job": "es"
+    }
+  }
+]
+
