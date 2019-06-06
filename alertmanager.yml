@@ -1,12 +1,12 @@
 global:
   resolve_timeout: 10m
   wechat_api_url: 'https://qyapi.weixin.qq.com/cgi-bin/'
-  wechat_api_secret: 'Md9LNjeBdVd6IW0dAW7boJA7uOB5dY6arth5-Omyf1k'
-  wechat_api_corp_id: 'wwad772854acf23758'
+  wechat_api_secret: ''
+  wechat_api_corp_id: ''
   smtp_smarthost: 'smtp.qq.com:465'
-  smtp_from: '464050145@qq.com'
-  smtp_auth_username: '464050145@qq.com'
-  smtp_auth_password: 'jeydynfwqbgybjaj'
+  smtp_from: ''
+  smtp_auth_username: ''
+  smtp_auth_password: ''
   smtp_hello: 'qq.com'
   smtp_require_tls: false
 templates:
@@ -20,10 +20,10 @@ route:
 receivers:
 - name: gnway
   webhook_configs:
-  - url: http://172.18.152.41:8060/dingtalk/dingding/send
+  - url: http:/dingtalk/dingding/send
     send_resolved: true
   email_configs:
-  - to: '464050145@qq.com'
+  - to: ''
     send_resolved: true
    # html: '{{ template "wps.html" . }}'
   #  headers: { Subject: " {{ .CommonAnnotations.summary }}" }
@@ -31,6 +31,6 @@ receivers:
   - send_resolved: true
     to_party: '1'
     agent_id: '1000003'
-    api_url: 'https://qyapi.weixin.qq.com/cgi-bin/'
-    api_secret: 'Md9LNjeBdVd6IW0dAW7boJA7uOB5dY6arth5-Omyf1k'
-    corp_id: 'wwad772854acf23758'
+    api_url: ''
+    api_secret: ''
+    corp_id: '
