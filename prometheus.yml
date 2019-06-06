@@ -1,0 +1,153 @@
+# my global config 
+global:
+  scrape_interval:     20s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 20s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  scrape_timeout: 20s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 172.18.152.40:9093
+      - 172.18.152.41:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - /var/gnway/prometheus/rule/*.rules
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+- job_name: 'blackbox-http'
+  metrics_path: /probe
+  params:
+    module: [http_2xx]
+  static_configs:
+    - targets: 
+      - https://supportest.kingdee.com
+      - https://support.kingdee.com
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 127.0.0.1:9115
+- job_name: 'blackbox-ping-ip'
+  metrics_path: /probe
+  params:
+    module: [icmp]
+  static_configs:
+    - targets: [ '172.18.152.247' ]
+  relabel_configs:
+    - source_labels: [__address__]
+      regex: (.*)(:80)?
+      target_label: __param_target
+      replacement: ${1}
+    - source_labels: [__param_target]
+      regex: (.*)
+      target_label: ping
+      replacement: ${1}
+    - source_labels: []
+      regex: .*
+      target_label: __address__
+      replacement: 127.0.0.1:9115
+- job_name: 'k8s-prometheus'
+  scrape_interval: 15s
+
+  honor_labels: true
+  metrics_path: '/federate'
+
+  params:
+    'match[]':
+      - '{job="haproxy"}'
+      - '{job="kubernetes-cadvisor"}'
+  static_configs:
+    - targets:
+      - '172.18.152.24:31995'
+- job_name: 'node'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - node.json
+- job_name: 'kingdee-node'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.node.json
+- job_name: 'prometheus'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - prometheus.json
+- job_name: 'pxc'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - pxc.json
+- job_name: 'kingdee-pxc'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.pxc.json
+- job_name: 'redis'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - redis.json
+- job_name: 'kingdee-redis'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.redis.json
+- job_name: 'mongodb'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - mongodb.json
+- job_name: 'kingdee-mongodb'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.mongodb.json
+- job_name: 'es'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - es.json
+- job_name: 'kingdee-es'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.es.json
+- job_name: 'gluster'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - gluster.json
+- job_name: 'kingdee-gluster'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.gluster.json
+- job_name: 'kubernetes-node'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kubernetes.json
+- job_name: 'kingdee-memecached'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - kingdee.memcached.json
+- job_name: 'kubernetes-ingress'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - ingress.json
+- job_name: 'freeswitch'
+  file_sd_configs:
+  - refresh_interval: 1m
+    files:
+    - freeswitch.json
