@@ -1,6 +1,6 @@
 # 一个新手从0开始搭建Prometheus监控系统和一些配置文件
 Prometheus监控系统四大组件：
-1.Exporter
+1.Exporter \n
 2.Prometheus server
 3.Alertmanager
 4.Grafana
