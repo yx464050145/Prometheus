@@ -1,0 +1,36 @@
+global:
+  resolve_timeout: 10m
+  wechat_api_url: 'https://qyapi.weixin.qq.com/cgi-bin/'
+  wechat_api_secret: 'Md9LNjeBdVd6IW0dAW7boJA7uOB5dY6arth5-Omyf1k'
+  wechat_api_corp_id: 'wwad772854acf23758'
+  smtp_smarthost: 'smtp.qq.com:465'
+  smtp_from: '464050145@qq.com'
+  smtp_auth_username: '464050145@qq.com'
+  smtp_auth_password: 'jeydynfwqbgybjaj'
+  smtp_hello: 'qq.com'
+  smtp_require_tls: false
+templates:
+#  - '/var/gnway/alertmanager/template/*.tmpl'
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 1m
+  repeat_interval: 360m
+  receiver: gnway
+receivers:
+- name: gnway
+  webhook_configs:
+  - url: http://172.18.152.41:8060/dingtalk/dingding/send
+    send_resolved: true
+  email_configs:
+  - to: '464050145@qq.com'
+    send_resolved: true
+   # html: '{{ template "wps.html" . }}'
+  #  headers: { Subject: " {{ .CommonAnnotations.summary }}" }
+  wechat_configs:
+  - send_resolved: true
+    to_party: '1'
+    agent_id: '1000003'
+    api_url: 'https://qyapi.weixin.qq.com/cgi-bin/'
+    api_secret: 'Md9LNjeBdVd6IW0dAW7boJA7uOB5dY6arth5-Omyf1k'
+    corp_id: 'wwad772854acf23758'
