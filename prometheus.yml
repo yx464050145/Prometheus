@@ -9,8 +9,8 @@ alerting:
   alertmanagers:
   - static_configs:
     - targets:
-      - 172.18.152.40:9093
-      - 172.18.152.41:9093
+      - :9093
+      - :9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -25,8 +25,8 @@ scrape_configs:
     module: [http_2xx]
   static_configs:
     - targets: 
-      - https://supportest.kingdee.com
-      - https://support.kingdee.com
+      - https:
+      - https:
   relabel_configs:
     - source_labels: [__address__]
       target_label: __param_target
@@ -39,7 +39,7 @@ scrape_configs:
   params:
     module: [icmp]
   static_configs:
-    - targets: [ '172.18.152.247' ]
+    - targets: [ '' ]
   relabel_configs:
     - source_labels: [__address__]
       regex: (.*)(:80)?
@@ -65,7 +65,7 @@ scrape_configs:
       - '{job="kubernetes-cadvisor"}'
   static_configs:
     - targets:
-      - '172.18.152.24:31995'
+      - ''
 - job_name: 'node'
   file_sd_configs:
   - refresh_interval: 1m
