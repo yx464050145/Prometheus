@@ -2,7 +2,7 @@
 After=docker.service
 
 [Service]
-ExecStart=/var/gnway/prometheus/prometheus --config.file=/var/gnway/prometheus/prometheus.yml --storage.tsdb.path=/var/gnway/prometheus/Data/ --web.external-url=http://172.18.152.41:9090
+ExecStart=/var/gnway/prometheus/prometheus --config.file=/var/gnway/prometheus/prometheus.yml --storage.tsdb.path=/var/gnway/prometheus/Data/ --web.external-url=http://:9090
 Restart=always
 
 
