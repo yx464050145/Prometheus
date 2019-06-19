@@ -1,0 +1,22 @@
+groups:
+- name: Mongodb Down
+  rules:
+  - alert: Mongodb Down
+    expr: mongodb_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "Mongodb {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "Mongodb{{ $labels.instance }}  is Down,value: {{ $value }}"
+- name: Mongodb connected
+  rules:
+  - alert: Mongodb connected
+    expr: mongodb_connections{state="available"}  < 10000
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Mongodb {{ $labels.instance }}  connection high, value: {{ $value }}"
+      description: "Mongodb{{ $labels.instance }}  connection high,value: {{ $value }}"
+

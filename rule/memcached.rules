@@ -1,0 +1,21 @@
+groups:
+- name: memecached Down
+  rules:
+  - alert: memcached Down
+    expr: memcached_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "memcached {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "memcached {{ $labels.instance }}  is Down,value: {{ $value }}"
+- name: memecached connection high
+  rules:
+  - alert: memcached connection high
+    expr: (memcached_current_connections / memcached_max_connections) *100 > 80
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "memcached {{ $labels.instance }} connection is high, value: {{ $value }}"
+      description: "memcached {{ $labels.instance }}  connection is high,value: {{ $value }}"

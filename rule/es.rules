@@ -1,0 +1,12 @@
+groups:
+- name: es Down
+  rules:
+  - alert: es Down
+    expr: elasticsearch_cluster_health_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "es {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "es {{ $labels.instance }}  is Down,value: {{ $value }}"
+

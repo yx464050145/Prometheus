@@ -1,0 +1,11 @@
+groups:
+- name: freeswitch Down
+  rules:
+  - alert: freeswitch Down
+    expr: namedprocess_namegroup_num_procs == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "freeswitch {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "freeswitch {{ $labels.instance }}  is Down,value: {{ $value }}"

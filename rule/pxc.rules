@@ -1,0 +1,91 @@
+groups:
+- name: PXC Down
+  rules:
+  - alert: PXC Down
+    expr: mysql_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "PXC {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "PXC{{ $labels.instance }}  is Down,value: {{ $value }}"
+- name: PXC NO Primary
+  rules:
+  - alert: PXC NO Primary
+    expr: mysql_global_status_wsrep_cluster_status == 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  is NO Primary, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  is NO  Primary ,value: {{ $value }}"
+- name: PXC Off-line
+  rules:
+  - alert: PXC Off-line
+    expr: mysql_global_status_wsrep_connected == 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  is Off-line, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  is Off-line,value: {{ $value }}"
+- name: PXC NO-read
+  rules:
+  - alert: PXC NO-read
+    expr: mysql_global_status_wsrep_ready == 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  is NO-read, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  is NO-read,value: {{ $value }}"
+- name: PXC connected
+  rules:
+  - alert: PXC connected high
+    expr: (mysql_global_status_threads_connected / mysql_global_variables_max_connections) * 100  > 80
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  connected high, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  connected high,value: {{ $value }}"
+- name: PXC kingdee master state
+  rules:
+  - alert: PXC kingdee master state error
+    expr: mysql_global_status_wsrep_local_state{job="kingdee-pxc-master"} != 4
+    for: 1m
+    labels:
+      severity: error
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  state error, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  state error,value: {{ $value }}"
+- name: PXC kingdee slave state
+  rules:
+  - alert: PXC kingdee slave state error
+    expr: mysql_global_status_wsrep_local_state{job="kingdee-pxc-slave"} != 2
+    for: 1m
+    labels:
+      severity: error
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  state error, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  state error,value: {{ $value }}"
+- name: PXC  master state
+  rules:
+  - alert: PXC master state error
+    expr: mysql_global_status_wsrep_local_state{job="pxc-master"} != 4
+    for: 1m
+    labels:
+      severity: error
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  state error, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  state error,value: {{ $value }}"
+- name: PXC slave state
+  rules:
+  - alert: PXC slave state error
+    expr: mysql_global_status_wsrep_local_state{job="pxc-slave"} != 2
+    for: 1m
+    labels:
+      severity: error
+    annotations:
+      summary: "PXC Instance{{ $labels.instance }}  state error, value: {{ $value }}"
+      description: "PXC Instance {{ $labels.instance }}  state error,value: {{ $value }}"

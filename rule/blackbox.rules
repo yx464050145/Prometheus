@@ -1,0 +1,21 @@
+groups:
+- name: WEB Down
+  rules:
+  - alert: WEB Down
+    expr: probe_http_status_code != 200
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "WEB {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "WEB {{ $labels.instance }}  is Down,value: {{ $value }}"
+- name: SSL Expire
+  rules:
+  - alert: SSL Expire
+    expr: (probe_ssl_earliest_cert_expiry - time())  < 2605044
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "SSL {{ $labels.instance }}  is Expire, There's still a month to go."
+      description: "SSL {{ $labels.instance }} is Expire, There's still a month to go."

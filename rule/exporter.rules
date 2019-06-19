@@ -1,0 +1,22 @@
+groups:
+- name: Exporter Down
+  rules:
+  - alert: Exporter Down
+    expr: up{gnway="base"} == 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Exporter {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "Exporter {{ $labels.instance }}  is Down,value: {{ $value }}"
+- name: Black Box Exporter Down
+  rules:
+  - alert: Black Box Exporter Down
+    expr: up{job="blackbox-http"} == 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Black Box Exporter {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "Black Box Exporter {{ $labels.instance }}  is Down,value: {{ $value }}"
+

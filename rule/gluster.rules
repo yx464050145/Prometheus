@@ -1,0 +1,12 @@
+groups:
+- name: gluster Down
+  rules:
+  - alert: gluster Down
+    expr: gluster_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "gluster {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "gluster {{ $labels.instance }}  is Down,value: {{ $value }}"
+

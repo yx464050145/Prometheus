@@ -1,0 +1,12 @@
+groups:
+- name: haproxy Down
+  rules:
+  - alert: Redis Down
+    expr: haproxy_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "haprxoy {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "haproxy {{ $labels.instance }}  is Down,value: {{ $value }}"
+

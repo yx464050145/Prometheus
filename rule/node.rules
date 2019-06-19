@@ -1,0 +1,101 @@
+groups:
+- name: nodedown
+  rules:
+  - alert: nodeDown
+    expr: up{gnway="exporter"} == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "Instance {{ $labels.instance }} node is Down"
+      description: "{{ $labels.instance }} node is Down"
+- name: node_load1 Hgih
+  rules:
+  - alert: hostload1high
+    expr: node_load1{job="node"} > 6
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} load1 usgae high"
+      description: "{{ $labels.instance }} load1 usage high (current value: {{ $value }})"
+- name: node_load1 Hgih High
+  rules:
+  - alert: hostload1high
+    expr: node_load1{job="kingdee-node"} > 12
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} load1 usgae high"
+      description: "{{ $labels.instance }} load1 usage high (current value: {{ $value }})"
+- name: node_load5 Hgih
+  rules:
+  - alert: hostload5high
+    expr: node_load5{job="node"} > 6
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} load5 usgae high"
+      description: "{{ $labels.instance }} load5 usage high (current value: {{ $value }})"
+- name: node_load5 Hgih High
+  rules:
+  - alert: hostload5high
+    expr: node_load5{job="kingdee-node"} > 12
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} load5 usgae high"
+      description: "{{ $labels.instance }} load5 usage high (current value: {{ $value }})"
+- name: node_load15 Hgih
+  rules:
+  - alert: hostload15high
+    expr: node_load15{job="node"} > 6
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} load15 usgae high"
+      description: "{{ $labels.instance }} load15 usage high (current value: {{ $value }})"
+- name: node_load15 Hgih High
+  rules:
+  - alert: hostload15high
+    expr: node_load15{job="kingdee-node"} > 12
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} load15 usgae high"
+      description: "{{ $labels.instance }} load15 usage high (current value: {{ $value }})"
+- name: nf_conntrack 
+  rules:
+  - alert: nf_conntrack high
+    expr: ((1-((node_nf_conntrack_entries_limit - node_nf_conntrack_entries)/node_nf_conntrack_entries_limit )) * 100) > 90
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} nf_conntrack usgae above 90%"
+      description: "{{ $labels.instance }} nf_conntrack usage above 90% "
+- name: MemAvailable high
+  rules:
+  - alert: memory availabel low
+    expr: (1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100 > 85
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }}  memory usage above 85%, value: {{ $value }}"
+      description: "Instance {{ $labels.instance }}  memory usage above 85%,value: {{ $value }}"
+- name: Disk available space 
+  rules:
+  - alert: Disk available space low
+    expr: (1-(node_filesystem_free_bytes{fstype=~"ext4|xfs"} / node_filesystem_size_bytes{fstype=~"ext4|xfs"})) * 100 > 85
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }}  Disk  usage above 80%, value: {{ $value }}"
+      description: "Instance {{ $labels.instance }}  Disk usage above 80%,value: {{ $value }}"

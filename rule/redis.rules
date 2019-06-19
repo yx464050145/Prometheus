@@ -1,0 +1,12 @@
+groups:
+- name: Redis Down
+  rules:
+  - alert: Redis Down
+    expr: redis_up == 0
+    for: 1m
+    labels:
+      severity: serious
+    annotations:
+      summary: "Redis {{ $labels.instance }}  is Down, value: {{ $value }}"
+      description: "Redis{{ $labels.instance }}  is Down,value: {{ $value }}"
+
