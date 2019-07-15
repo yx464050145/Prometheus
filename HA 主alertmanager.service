@@ -1,0 +1,10 @@
+[Unit]
+After=docker.service
+
+[Service]
+ExecStart=/var/gnway/alertmanager/alertmanager  --web.listen-address=:9093 --cluster.listen-address=:8001 --config.file=/var/gnway/alertmanager/alertmanager.yml  --storage.path=/var/gnway/alertmanager
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target
