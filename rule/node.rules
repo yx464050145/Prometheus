@@ -99,3 +99,23 @@ groups:
     annotations:
       summary: "Instance {{ $labels.instance }}  Disk  usage above 80%, value: {{ $value }}"
       description: "Instance {{ $labels.instance }}  Disk usage above 80%,value: {{ $value }}"
+- name: node_ntp_offset_seconds high
+  rules:
+  - alert: node time is Inaccurate
+    expr:  node_ntp_offset_seconds > 1
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }}  node_ntp_offset_seconds > 1, value: {{ $value }}"
+      description: "Instance {{ $labels.instance }} node_ntp_offset_seconds > 1,value: {{ $value }}"
+- name: node_ntp_offset_seconds low
+  rules:
+  - alert: node time is Inaccurate
+    expr:  node_ntp_offset_seconds < -1
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }}  node_ntp_offset_seconds < -1, value: {{ $value }}"
+      description: "Instance {{ $labels.instance }} node_ntp_offset_seconds < -1,value: {{ $value }}"
