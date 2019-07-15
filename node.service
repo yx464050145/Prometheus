@@ -2,7 +2,8 @@
 After=docker.service
 
 [Service]
-ExecStart=/var/gnway/node_exporter/node_exporter
+ExecStart=ExecStart=/var/gnway/node_exporter/node_exporter --collector.ntp --collector.ntp.server-is-local --collector.ntp.server=192.168.1.13 --collector.ntp.ip-ttl=64
+
 Restart=always
 
 
